@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us | Asta Epsilon Infotronics</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet" />
+  <!-- Reuse your existing <style> from index.html (navbar, container, footer, etc.) -->
+  <style>
+    /* you can paste your shared styles here and then add the page-specific ones below */
+    :root {
+      /* Light industrial palette */
+      --bg-main: #f4f5f7;
+      --bg-alt: #e9edf0;
+      --accent: #3b3c36;
+      --accent-soft: #7b7d77;
+      --accent-bright: #ff6f20;
+      --text-main: #222426;
+      --text-muted: #5b5d60;
+      --border-soft: #d1d5db;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Glacial Indifference', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout helpers */
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    /* --------------- PAGE HEIGHT SPLIT --------------- */
+
+    .page-shell {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* nav + hero */
+    }
+
+    /* Navbar: approx 15% of viewport */
+    header {
+      background: #ffffff;
+      box-shadow: var(--shadow-soft);
+      flex: 0 0 15vh;
+      z-index: 20;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding: 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-left img.logo {
+      height: 80px;
+      width: auto;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-menu a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-bright);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    /* Responsive nav (simple collapse to wrap) */
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+      }
+    }
+
+  /* --------------- HERO VIDEO --------------- */
+
+    .hero-video {
+      flex: 1 0 auto;
+      padding: 0;          /* remove any padding that could create a gap */
+      margin: 0;           /* ensure no top margin */
+    }
+
+    .hero-video-wrap {
+      position: relative;
+      width: 100vw;
+      height: 85vh;        /* adjust: 70–90vh as you like */
+      max-height: 100vh;
+      overflow: hidden;
+      margin: 0;           /* no gap above or below */
+    }
+
+    /* Background video */
+    .hero-video-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      transform: translate(-50%, -50%);
+      object-fit: cover;   /* fills area, no black bars */
+      z-index: 0;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.15) 55%,
+        transparent 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-video-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    /* --------------- HERO TEXT --------------- */
+
+    .hero-copy h1 {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-copy h1 span {
+      color: var(--accent-bright);
+    }
+
+    .hero-copy p {
+      color: rgba(255, 255, 255, 0.86);
+      margin-bottom: 1.5rem;
+      max-width: 34rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(248, 249, 251, 0.12);
+      color: #ffffff;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+      background: #f2f2f2;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      color: var(--accent);
+    }
+
+
+    /* --------------- GLOBAL SECTIONS --------------- */
+
+    section {
+      padding: 2rem 0;
+    }
+
+    .hero-copy-block {
+      padding: 3rem 0 2rem;
+      background: var(--bg-main);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      max-width: 26rem;
+      color: var(--text-muted);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 880px) {
+      .hero-video-wrap {
+        height: 70vh;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pill-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .why-main p {
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .why-points {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 0.4rem;
+    }
+
+    .why-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .why-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      background: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .why-text {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+    
+    footer {
+      margin-top: 2.5rem;
+      border-top: 1px solid var(--border-soft);
+      padding: 1rem 0 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      color: var(--accent-soft);
+    }
+    /* PAGE-SPECIFIC ABOUT STYLES */
+    main {
+      padding-top: 2.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .about-hero {
+      padding: 2rem 0 1rem;
+    }
+
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .about-hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-title {
+      font-size: 1.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .about-title span {
+      color: var(--accent-bright);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      max-width: 40rem;
+    }
+
+    .about-tagline {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 0.25rem;
+    }
+
+    .about-meta-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-meta-card h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-meta-list {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .about-meta-list li span {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* WHY US / WHY BUY SECTION */
+
+    .why-buy {
+      padding: 2.5rem 0 0;
+      border-top: 1px solid var(--border-soft);
+      margin-top: 2rem;
+    }
+
+    .why-buy-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+    }
+
+    .why-buy-title {
+      font-size: 1.3rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .why-buy-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 26rem;
+    }
+
+    .why-buy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 960px) {
+      .why-buy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .why-buy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .why-buy-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.2rem 1.1rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .why-buy-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .why-buy-card h3 {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .why-buy-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- Same header as index.html -->
+    <header>
+      <div class="container nav">
+        <div class="nav-left">
+          <a href="index.html">
+            <img src="logo.png" alt="Asta Epsilon Infotronics logo" class="logo" />
+          </a>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="about.html">About Us</a>
+          <a href="services-web.html">Web Dev</a>
+          <a href="services-software.html">Software</a>
+          <a href="services-other.html">Other Services</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ABOUT SECTION -->
+      <section class="about-hero">
+        <div class="container about-hero-grid">
+          <div class="about-text">
+            <div class="about-kicker">About the collective</div>
+            <h1 class="about-title">
+              Five <span>engineers</span>, one lab
+            </h1>
+            <p>
+              Asta Epsilon Infotronics is run by five computer engineering students from Kolkata who treat every project like a lab experiment: define the problem, design the system, measure the results, then iterate.
+            </p>
+            <p>
+              Between classes, research work, and hackathons, the team prototypes websites, software tools, printable graphics, and IoT devices that are actually used on campus and by early-stage clients.
+            </p>
+            <p class="about-tagline">
+              The group is small on purpose, so every build has a clear owner and a fast response loop.
+            </p>
+          </div>
+
+          <aside class="about-meta-card">
+            <h3>Snapshot</h3>
+            <ul class="about-meta-list">
+              <li><span>Base:</span> Kolkata, India</li>
+              <li><span>Discipline:</span> Computer engineering students</li>
+              <li><span>Focus:</span> Web, software, printable design, IoT devices</li>
+              <li><span>Style:</span> Clean, industrial, production-minded builds</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- WHY BUY / WHY US FOR SERVICES & DEVICES -->
+      <section class="why-buy">
+        <div class="container">
+          <div class="why-buy-header">
+            <h2 class="why-buy-title">Why choose our builds</h2>
+            <p class="why-buy-subtitle">
+              Whether it is a website, a desktop tool, a batch of posters, or a sensor module, the team designs it as if it will be deployed in a production environment, not just submitted for marks.
+            </p>
+          </div>
+
+          <div class="why-buy-grid">
+            <div class="why-buy-card">
+              <div class="why-buy-label">Web &amp; software</div>
+              <h3>Practical engineering, not demos</h3>
+              <p>
+                Code is written to be readable and maintainable, with simple stacks that work on real hosting and hardware, so you are not locked into student-only tech or one specific developer.
+              </p>
+            </div>
+
+            <div class="why-buy-card">
+              <div class="why-buy-label">Design</div>
+              <h3>Technical stories made visual</h3>
+              <p>
+                Posters, flyers, and logos are built around grids, hierarchy, and legible type so your technical message stands out on notice boards, timelines, and project reports.
+              </p>
+            </div>
+
+            <div class="why-buy-card">
+              <div class="why-buy-label">IoT &amp; devices</div>
+              <h3>From breadboard to usable unit</h3>
+              <p>
+                Sensors and small devices are wired, tested, and documented with clear labels and connection diagrams so you can plug them into your own systems without guesswork.
+              </p>
+            </div>
+
+            <div class="why-buy-card">
+              <div class="why-buy-label">Collaboration</div>
+              <h3>Direct access to builders</h3>
+              <p>
+                You talk to the same students who are actually designing your solution, which keeps feedback cycles short and reduces miscommunication compared to larger agencies.
+              </p>
+            </div>
+
+            <div class="why-buy-card">
+              <div class="why-buy-label">Value</div>
+              <h3>Student pricing, pro mindset</h3>
+              <p>
+                Rates reflect a student studio, but the team still ships with estimates, milestones, and handover docs so you know what you are getting and when.
+              </p>
+            </div>
+
+            <div class="why-buy-card">
+              <div class="why-buy-label">Future-ready</div>
+              <h3>Built to evolve</h3>
+              <p>
+                Each project leaves room for upgrades, whether that means adding new pages, features, or attaching more sensors later, so your first version is not a dead end.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Same footer as index.html -->
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          © <span id="year"></span> Asta Epsilon Infotronics. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Software Development Services | Asta Epsilon Infotronics</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #f4f5f7;
+      --bg-alt: #e9edf0;
+      --accent: #3b3c36;
+      --accent-soft: #7b7d77;
+      --accent-bright: #ff6f20;
+      --text-main: #222426;
+      --text-muted: #5b5d60;
+      --border-soft: #d1d5db;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+      --accent-webapp-std: #e0f2fe;
+      --accent-webapp-prem: #fef3c7;
+      --accent-exe-1: #e0f7fa;
+      --accent-exe-2: #ede9fe;
+      --accent-exe-3: #fce7f3;
+      --accent-exe-4: #f1f5f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Glacial Indifference', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    header {
+      background: #ffffff;
+      box-shadow: var(--shadow-soft);
+      z-index: 20;
+      position: relative;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-left img.logo {
+      height: 80px;
+      width: auto;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-menu a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-bright);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .nav-menu {
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+      }
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HERO VIDEO */
+    .software-hero {
+      position: relative;
+      width: 100vw;
+      height: 65vh;
+      max-height: 100vh;
+      overflow: hidden;
+    }
+
+    .software-hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      transform: translate(-50%, -50%) scale(1.03);
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .software-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.3) 55%,
+        transparent 100%
+      );
+      z-index: 1;
+    }
+
+    .software-hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      max-width: 34rem;
+    }
+
+    .hero-title span {
+      color: var(--accent-bright);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 38rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+      background: #f2f2f2;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      color: var(--accent);
+    }
+
+    /* SECTION HEADERS */
+    section {
+      padding: 2.8rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 1.7rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 42rem;
+    }
+
+    /* SHARED CARD STYLES */
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    @media (max-width: 880px) {
+      .card-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    @media (max-width: 1024px) {
+      .card-grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .card-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .plan-card {
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 1.4rem 1.4rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .plan-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .plan-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 60%);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .plan-card.webapp-standard {
+      background: linear-gradient(135deg, var(--accent-webapp-std), #ffffff);
+    }
+
+    .plan-card.webapp-premium {
+      background: linear-gradient(135deg, var(--accent-webapp-prem), #ffffff);
+    }
+
+    .plan-card.exe-system {
+      background: linear-gradient(135deg, var(--accent-exe-1), #ffffff);
+    }
+
+    .plan-card.exe-app {
+      background: linear-gradient(135deg, var(--accent-exe-2), #ffffff);
+    }
+
+    .plan-card.exe-iot {
+      background: linear-gradient(135deg, var(--accent-exe-3), #ffffff);
+    }
+
+    .plan-card.exe-pos,
+    .plan-card.exe-firm {
+      background: linear-gradient(135deg, var(--accent-exe-4), #ffffff);
+    }
+
+    .plan-card.highlight {
+      border-color: var(--accent-bright);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.16);
+    }
+
+    .badge-flag {
+      position: absolute;
+      top: 14px;
+      right: -40px;
+      transform: rotate(45deg);
+      background: var(--accent-bright);
+      color: #ffffff;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.25rem 2.1rem;
+      z-index: 2;
+    }
+
+    .badge-inline {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      transform: none;
+      border-radius: 999px;
+      background: var(--accent-bright);
+      color: #ffffff;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.25rem 0.9rem;
+      z-index: 2;
+    }
+
+    .plan-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+      margin-bottom: 0.35rem;
+    }
+
+    .plan-name {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .plan-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .plan-price span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 0.15rem;
+    }
+
+    .plan-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .plan-divider {
+      border-top: 1px dashed var(--border-soft);
+      margin: 0.85rem 0;
+    }
+
+    .plan-list {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .plan-list li {
+      display: flex;
+      gap: 0.45rem;
+      align-items: flex-start;
+    }
+
+    .plan-bullet {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .plan-text span {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .plan-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 15px;
+    }
+
+    .plan-cta {
+      margin-top: 0.6rem;
+      margin-bottom: 10px;
+    }
+
+    .plan-cta .btn-primary {
+      font-size: 0.78rem;
+      padding: 0.6rem 1.4rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1rem 0 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      color: var(--accent-soft);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- NAVBAR -->
+    <header>
+      <div class="container nav">
+        <div class="nav-left">
+          <a href="index.html">
+            <img src="logo.png" alt="Asta Epsilon Infotronics logo" class="logo" />
+          </a>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="about.html">About Us</a>
+          <a href="services-web.html">Web Dev</a>
+          <a href="services-software.html">Software</a>
+          <a href="services-other.html">Other Services</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="software-hero">
+        <video autoplay loop muted playsinline>
+          <source src="software-hero.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+        <div class="software-hero-overlay"></div>
+        <div class="software-hero-content container">
+          <div>
+            <div class="hero-kicker">Software development</div>
+            <h1 class="hero-title">
+              Web apps &amp; executables<br />
+              <span>engineered for real workloads</span>
+            </h1>
+            <p class="hero-sub">
+              Asta Epsilon Infotronics builds browser-based tools and desktop-grade executables for the kinds of tasks that do not fit into a simple template: dashboards, POS systems, IoT control panels, system utilities, and more.
+            </p>
+            <div class="hero-cta">
+              <a href="#webapps" class="btn-primary">WebApp plans</a>
+              <a href="#executables" class="btn-outline">Executable plans</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WEBAPPS SECTION -->
+      <section id="webapps">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Web apps</div>
+            <h2 class="section-title">From browser to backend</h2>
+            <p class="section-sub">
+              Standard and premium WebApps are built with production-ready stacks, clean HTML/CSS frontends, and structured backends so your tool can grow beyond the first prototype.
+            </p>
+          </div>
+
+          <div class="card-grid-2">
+            <!-- Standard WebApp -->
+            <article class="plan-card webapp-standard">
+              <div class="plan-inner">
+                <div class="plan-label">WebApp plan</div>
+                <h3 class="plan-name">Standard WebApp</h3>
+                <p class="plan-tagline">
+                  A solid web application with a clean UI and a backend for forms, data, and basic workflows.
+                </p>
+
+                <div class="plan-divider"></div>
+
+                <ul class="plan-list">
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Responsive HTML/CSS frontend</span> with clear navigation and layout.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Backend with routing and logic</span> to handle forms and core behaviours.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Database integration</span> for storing user or business data.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Authentication-ready</span> structure for future login and role support.
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="plan-cta">
+                  <a href="contact.html" class="btn-primary">Discuss Standard WebApp</a>
+                  <p class="plan-meta">
+                    Starting price; final quote depends on exact features and complexity.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Premium WebApp -->
+            <article class="plan-card webapp-premium highlight">
+              <div class="badge-inline">Best for complex tools</div>
+              <div class="plan-inner">
+                <div class="plan-label">WebApp plan</div>
+                <h3 class="plan-name">Premium WebApp</h3>
+                <p class="plan-tagline">
+                  A richer application layer with more modules, integrations, and long-term scalability.
+                </p>
+
+                <div class="plan-divider"></div>
+
+                <ul class="plan-list">
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Advanced UI flows</span> with multiple screens, dashboards, or reports.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Modular backend</span> designed for new features to be added safely later.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Data modelling and validation</span> for more complex entities and rules.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Integration-ready</span> structure for APIs, payments, or third‑party services.
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="plan-cta">
+                  <a href="contact.html" class="btn-primary">Discuss Premium WebApp</a>
+                  <p class="plan-meta">
+                    Starting price; additional modules and integrations are scoped and priced with you.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXECUTABLES SECTION -->
+      <section id="executables" style="background:#ffffff; border-top:1px solid var(--border-soft);">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Executables</div>
+            <h2 class="section-title">Desktop and device grade</h2>
+            <p class="section-sub">
+              From small utilities that tweak configuration files to firmware for microcontrollers, executables are built with safety, documentation, and deployment in mind. Executables come with a zipped folder including the executable, a custom license, and a user manual.
+            </p>
+          </div>
+
+          <!-- First row: SystemWare + AppWare + IoTWare -->
+          <div class="card-grid-3" style="margin-bottom:1.8rem;">
+            <!-- SystemWare -->
+            <article class="plan-card exe-system">
+              <div class="plan-inner">
+                <div class="plan-label">Executable</div>
+                <h3 class="plan-name">SystemWare</h3>
+                <p class="plan-tagline">
+                  System-level tools that need administrator or OS-level permissions.
+                </p>
+
+                <div class="plan-divider"></div>
+
+                <ul class="plan-list">
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Admin-grade utilities</span> for tasks like log handling, backups, or system checks.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Permission-aware design</span> so required privileges are clear and justified.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Installation and usage notes</span> in the included user manual.
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="plan-cta">
+                  <a href="contact.html" class="btn-primary">Discuss SystemWare</a>
+                  <p class="plan-meta">
+                    Ideal when the software has to interact closely with the OS or hardware.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <!-- AppWare -->
+            <article class="plan-card exe-app">
+              <div class="plan-inner">
+                <div class="plan-label">Executable</div>
+                <h3 class="plan-name">AppWare</h3>
+                <p class="plan-tagline">
+                  Lightweight desktop apps to automate repetitive steps and small workflows.
+                </p>
+
+                <div class="plan-divider"></div>
+
+                <ul class="plan-list">
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Task-focused tools</span> like JSON/CSV transformers or template generators.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Simple UI</span> so non-technical users can run the tool safely.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Repeatable runs</span> with predictable outputs documented in the manual.
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="plan-cta">
+                  <a href="contact.html" class="btn-primary">Discuss AppWare</a>
+                  <p class="plan-meta">
+                    Great for semi-automating workflows such as updating website content bundles.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <!-- IoTWare -->
+            <article class="plan-card exe-iot highlight">
+              <div class="badge-inline">IoT &amp; dashboards</div>
+              <div class="plan-inner">
+                <div class="plan-label">Executable</div>
+                <h3 class="plan-name">IoTWare</h3>
+                <p class="plan-tagline">
+                  Software and libraries that bind sensors, devices, and dashboards into one workflow.
+                </p>
+
+                <div class="plan-divider"></div>
+
+                <ul class="plan-list">
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Sensor libraries</span> for reading and normalising data from supported hardware.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Data pipelines</span> to send readings to dashboards, logs, or APIs.
+                    </div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Dashboard helpers</span> or viewer apps for visualising key metrics.
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="plan-cta">
+                  <a href="contact.html" class="btn-primary">Discuss IoTWare</a>
+                  <p class="plan-meta">
+                    Built for labs, makerspaces, and teams connecting sensors to real-world dashboards.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Second row: POSWare + FirmWare -->
+          <div class="card-grid-3">
+            <!-- POSWare -->
+            <article class="plan-card exe-pos">
+              <div class="plan-inner">
+                <div class="plan-label">Executable</div>
+                <h3 class="plan-name">POSWare</h3>
+                <p class="plan-tagline">
+                  Point-of-sale software tuned for counters, kiosks, or small store setups.
+                </p>
+
+                <div class="plan-divider"></div>
+
+                <ul class="plan-list">
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Checkout flows</span> for adding items, totals, and basic discounts.</div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Simple reporting</span> for daily or periodic sales summaries.</div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Peripheral-ready design</span> so printers or scanners can be added later.</div>
+                  </li>
+                </ul>
+
+                <div class="plan-cta">
+                  <a href="contact.html" class="btn-primary">Discuss POSWare</a>
+                  <p class="plan-meta">
+                    A starting point for physical counters that need digital record-keeping.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <!-- FirmWare -->
+            <article class="plan-card exe-firm">
+              <div class="plan-inner">
+                <div class="plan-label">Executable</div>
+                <h3 class="plan-name">FirmWare</h3>
+                <p class="plan-tagline">
+                  Firmware for microcontrollers and small boards that need predictable behaviour.
+                </p>
+
+                <div class="plan-divider"></div>
+
+                <ul class="plan-list">
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>MCU code</span> targeting supported boards and toolchains.</div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Pin mappings and wiring notes</span> in the user manual.</div>
+                  </li>
+                  <li>
+                    <span class="plan-bullet"></span>
+                    <div class="plan-text">
+                      <span>Update instructions</span> so you can flash new versions safely.</div>
+                  </li>
+                </ul>
+
+                <div class="plan-cta">
+                  <a href="contact.html" class="btn-primary">Discuss FirmWare</a>
+                  <p class="plan-meta">
+                    Suitable for small devices, prototypes, or student hardware projects that need stability.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Empty spacer (keeps grid balanced on wide screens) -->
+            <div class="plan-card" style="visibility:hidden;"></div>
+          </div>
+
+          <p class="plan-meta" style="margin-top:1.2rem;">
+            All prices are starting estimates. Extra additions, integrations, or modules are discussed with you and charged separately once the scope is clear.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          © <span id="year"></span> Asta Epsilon Infotronics. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

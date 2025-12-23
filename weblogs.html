@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weblogs &amp; Recent Builds | Asta Epsilon Infotronics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #f4f5f7;
+      --bg-alt: #e9edf0;
+      --accent: #3b3c36;
+      --accent-soft: #7b7d77;
+      --accent-bright: #ff6f20;
+      --text-main: #222426;
+      --text-muted: #5b5d60;
+      --border-soft: #d1d5db;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Glacial Indifference', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    header {
+      background: #ffffff;
+      box-shadow: var(--shadow-soft);
+      z-index: 20;
+      position: relative;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-left img.logo {
+      height: 80px;
+      width: auto;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-menu a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-bright);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .nav-menu {
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+      }
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HERO IMAGE */
+    .weblogs-hero {
+      position: relative;
+      width: 100vw;
+      height: 55vh;
+      max-height: 100vh;
+      overflow: hidden;
+      background-image: url('contact-hero.jpg'); /* replace with your hero image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .weblogs-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.3) 55%,
+        transparent 100%
+      );
+    }
+
+    .weblogs-hero-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.4rem);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      max-width: 34rem;
+    }
+
+    .hero-title span {
+      color: var(--accent-bright);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 36rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.4rem;
+    }
+
+    /* SECTION HEADERS */
+    section {
+      padding: 2.6rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 42rem;
+    }
+
+    /* CAROUSELS (same pattern as services-web) */
+    .weblogs-section {
+      background: #ffffff;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .weblogs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .weblogs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .carousel-shell {
+      background: var(--bg-alt);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .carousel-viewport {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .carousel-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      right: 0.9rem;
+      bottom: 0.9rem;
+      display: flex;
+      gap: 0.35rem;
+      z-index: 5;
+    }
+
+    .carousel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.15s ease-out;
+    }
+
+    .carousel-dot.active {
+      width: 16px;
+      background: #ffffff;
+    }
+
+    .carousel-footer {
+      padding: 0.9rem 1rem 1rem;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .carousel-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .carousel-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .carousel-link {
+      font-size: 0.8rem;
+      color: var(--accent-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1rem 0 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      color: var(--accent-soft);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- NAVBAR -->
+    <header>
+      <div class="container nav">
+        <div class="nav-left">
+          <a href="index.html">
+            <img src="logo.png" alt="Asta Epsilon Infotronics logo" class="logo" />
+          </a>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="about.html">About Us</a>
+          <a href="services-web.html">Web Dev</a>
+          <a href="services-software.html">Software</a>
+          <a href="services-other.html">Other Services</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="weblogs-hero">
+        <div class="weblogs-hero-overlay"></div>
+        <div class="weblogs-hero-content container">
+          <div>
+            <div class="hero-kicker">Weblogs</div>
+            <h1 class="hero-title">
+              Recent builds &amp; layouts<br />
+              <span>from Asta Epsilon Infotronics</span>
+            </h1>
+            <p class="hero-sub">
+              A gallery of static sites, web apps, and device dashboards the team has worked on recently, captured as quick carousels.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RECENT BUILDS CAROUSELS -->
+      <section class="weblogs-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Highlights</div>
+            <h2 class="section-title">Recent builds</h2>
+            <p class="section-sub">
+              Each carousel shows a few key screens from a project: how the layout flows, how sections are organised, and how devices and data show up on screen.
+            </p>
+          </div>
+
+          <div class="weblogs-grid">
+            <!-- Build 1 -->
+            <div class="carousel-shell" data-carousel="build-1">
+              <div class="carousel-viewport">
+                <div class="carousel-track">
+                  <div class="carousel-slide active">
+                    <img src="hotel-1.jpeg" alt="Build 1 hero section" />
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="hotel-2.jpeg" alt="Build 1 services or features section" />
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="hotel-3.jpeg" alt="Build 1 contact or footer section" />
+                  </div>
+                </div>
+                <div class="carousel-dots">
+                  <button class="carousel-dot active" data-index="0"></button>
+                  <button class="carousel-dot" data-index="1"></button>
+                  <button class="carousel-dot" data-index="2"></button>
+                </div>
+              </div>
+              <div class="carousel-footer">
+                <div class="carousel-title">Darjeeling Heights</div>
+                <div class="carousel-desc">
+                  Static site for a hotel, with information on rooms, amenities, location, and booking details.
+                </div>
+                <a href="https://rp2005-ai.github.io/Darjeeling-heights/" class="carousel-link">View Site</a>
+              </div>
+            </div>
+
+            <!-- Build 2 -->
+            <div class="carousel-shell" data-carousel="build-2">
+              <div class="carousel-viewport">
+                <div class="carousel-track">
+                  <div class="carousel-slide active">
+                    <img src="portfolio-1.png" alt="Build 2 dashboard overview" />
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="portfolio-2.png" alt="Build 2 charts and metrics" />
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="portfolio-3.png" alt="Build 2 settings or details view" />
+                  </div>
+                </div>
+                <div class="carousel-dots">
+                  <button class="carousel-dot active" data-index="0"></button>
+                  <button class="carousel-dot" data-index="1"></button>
+                  <button class="carousel-dot" data-index="2"></button>
+                </div>
+              </div>
+              <div class="carousel-footer">
+                <div class="carousel-title">Portfolio Site</div>
+                <div class="carousel-desc">
+                  A personal portfolio site template with sections for projects, skills, and contact information.
+                </div>
+                <a href="https://astaepsilongroupofficial.github.io/thecruciblecollective/" class="carousel-link">View Site</a>
+              </div>
+            </div>
+
+    
+
+            <!-- Spacer on wide screens to keep layout nice -->
+            <div class="carousel-shell" style="visibility:hidden;"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          © <span id="year"></span> Asta Epsilon Infotronics. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Multi-carousel logic: each shell rotates its own slides every 3 seconds
+    const CAROUSEL_INTERVAL = 3000;
+
+    document.querySelectorAll('.carousel-shell').forEach(shell => {
+      const slides = shell.querySelectorAll('.carousel-slide');
+      const dots = shell.querySelectorAll('.carousel-dot');
+      if (!slides.length) return;
+
+      let index = 0;
+
+      function showSlide(i) {
+        slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+        index = i;
+      }
+
+      function next() {
+        const nextIndex = (index + 1) % slides.length;
+        showSlide(nextIndex);
+      }
+
+      let timer = setInterval(next, CAROUSEL_INTERVAL);
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const i = parseInt(dot.getAttribute('data-index'), 10);
+          showSlide(i);
+          clearInterval(timer);
+          timer = setInterval(next, CAROUSEL_INTERVAL);
+        });
+      });
+
+      shell.addEventListener('mouseenter', () => clearInterval(timer));
+      shell.addEventListener('mouseleave', () => {
+        clearInterval(timer);
+        timer = setInterval(next, CAROUSEL_INTERVAL);
+      });
+    });
+  </script>
+</body>
+</html>

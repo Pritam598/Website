@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Other Services | Asta Epsilon Infotronics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #f4f5f7;
+      --bg-alt: #e9edf0;
+      --accent: #3b3c36;
+      --accent-soft: #7b7d77;
+      --accent-bright: #ff6f20;
+      --text-main: #222426;
+      --text-muted: #5b5d60;
+      --border-soft: #d1d5db;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+      --accent-print: #fef3c7;
+      --accent-influencer: #e0f2fe;
+      --accent-ads: #fce7f3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Glacial Indifference', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    header {
+      background: #ffffff;
+      box-shadow: var(--shadow-soft);
+      z-index: 20;
+      position: relative;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-left img.logo {
+      height: 80px;
+      width: auto;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-menu a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-bright);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .nav-menu {
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+      }
+    }
+
+    main {
+      flex: 1;
+      padding: 2.5rem 0 3rem;
+    }
+
+    /* SECTION PATTERN */
+    section {
+      padding: 2.2rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 1.4rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 40rem;
+    }
+
+    .section-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    @media (max-width: 880px) {
+      .section-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section-text p {
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      max-width: 40rem;
+    }
+
+    .section-text ul {
+      list-style: none;
+      margin-top: 0.4rem;
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .section-text li::before {
+      content: "• ";
+      color: var(--accent);
+      margin-right: 0.15rem;
+    }
+
+    .section-card {
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 1.3rem 1.4rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 60%);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .section-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-print {
+      background: linear-gradient(135deg, var(--accent-print), #ffffff);
+    }
+
+    .card-influencer {
+      background: linear-gradient(135deg, var(--accent-influencer), #ffffff);
+    }
+
+    .card-ads {
+      background: linear-gradient(135deg, var(--accent-ads), #ffffff);
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .card-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .card-price span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 0.1rem;
+    }
+
+    .card-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--accent-soft);
+      margin-bottom: 50px;
+    }
+
+    .card-cta {
+      margin-top: 0.7rem;
+      margin-bottom: 7px;
+    }
+
+    .btn-primary {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.15s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+      background: #2d2e2a;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1rem 0 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      color: var(--accent-soft);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- NAVBAR -->
+    <header>
+      <div class="container nav">
+        <div class="nav-left">
+          <a href="index.html">
+            <img src="logo.png" alt="Asta Epsilon Infotronics logo" class="logo" />
+          </a>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="about.html">About Us</a>
+          <a href="services-web.html">Web Dev</a>
+          <a href="services-software.html">Software</a>
+          <a href="services-other.html">Other Services</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- INFLUENCER CONNECT -->
+      <section id="influencer">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Influencer connect</div>
+            <h2 class="section-title">Influencer connect</h2>
+            <p class="section-sub">
+              A curated connect and marketing segment that helps people and businesses reach influencers on social media platforms for their campaigns and announcements.
+            </p>
+          </div>
+
+          <div class="section-body">
+            <div class="section-text">
+              <p>
+                The team helps you clarify the kind of reach you want, prepare the creative, and match you with suitable influencers instead of sending generic messages.
+              </p>
+              <p>
+                This is particularly useful for launches, events, or new services that need a focused push to the right audience rather than just more impressions.
+              </p>
+              <ul>
+                <li>Shortlisting influencers based on niche and audience profile.</li>
+                <li>Coordinating briefs and creative assets for posts or stories.</li>
+                <li>Aligning timelines so your message goes out at the right moment.</li>
+              </ul>
+            </div>
+
+            <aside class="section-card card-influencer">
+              <div class="section-card-inner">
+                <div class="card-label">Pricing</div>
+                <div class="card-title">Influencer connect services</div>
+                <p class="card-note">
+                  Pricing depends on the platforms, influencer reach, and campaign duration. Details are shared after an initial discussion.
+                </p>
+                <p class="card-meta">
+                  You only pay once the scope and expectations are clear from all sides.
+                </p>
+                <div class="card-cta">
+                  <a href="contact.html" class="btn-primary">Join the waitlist</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRINTABLE DESIGNS -->
+      <section id="printable" style="background:#ffffff;">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Printables</div>
+            <h2 class="section-title">Printable designs</h2>
+            <p class="section-sub">
+              Asta Epsilon Infotronics designs posters, logos, flyers, brochures, and other printable assets that carry the same clean, industrial feel as the rest of your brand.
+            </p>
+          </div>
+
+          <div class="section-body">
+            <div class="section-text">
+              <p>
+                Designs are prepared for real-world printing: correct sizes, bleed where needed, and exports in formats that work with common printers and online print services.
+              </p>
+              <p>
+                Because the team also builds websites and software, the visual language can stay consistent across your online and offline presence.
+              </p>
+              <ul>
+                <li>Event and festival posters for campuses or venues.</li>
+                <li>Logos for clubs, startups, or personal brands.</li>
+                <li>Flyers and handouts for campaigns or launches.</li>
+                <li>Brochures and one-pagers for products or services.</li>
+              </ul>
+            </div>
+
+            <aside class="section-card card-print">
+              <div class="section-card-inner">
+                <div class="card-label">Pricing</div>
+                <div class="card-title">Printable design services</div>
+                <p class="card-note">
+                  Entry pricing for small, simple assets. Larger campaigns, sets, or complex illustrations will be scoped and priced with you.
+                </p>
+                <p class="card-meta">
+                  Deliverables typically include print-ready files (PDF/PNG) and, where possible, editable source files.
+                </p>
+                <div class="card-cta">
+                  <a href="contact.html" class="btn-primary">Discuss a design brief</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <!-- ADVERTISEMENTS -->
+      <section id="ads">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Ads</div>
+            <h2 class="section-title">Online advertisements</h2>
+            <p class="section-sub">
+              Online ads that help businesses promote themselves on social media platforms and search engines with clean creatives and clear calls to action.
+            </p>
+          </div>
+
+          <div class="section-body">
+            <div class="section-text">
+              <p>
+                The focus is on making every rupee work harder by pairing sharp visuals with precise messaging instead of relying only on boosted posts.
+              </p>
+              <p>
+                Campaigns can be tuned for reach, clicks, or specific landing pages, depending on whether you want awareness or direct responses.
+              </p>
+              <ul>
+                <li>Ad creatives for social feeds, stories, and banners.</li>
+                <li>Copy that matches your brand voice and offer.</li>
+                <li>Support for basic campaign structure and targeting suggestions.</li>
+              </ul>
+            </div>
+
+            <aside class="section-card card-ads">
+              <div class="section-card-inner">
+                <div class="card-label">Pricing</div>
+                <div class="card-title">Online ad services</div>
+                <p class="card-note">
+                  Starting daily budget for simple campaigns. Larger spends, multiple ad sets, or complex funnels are scoped separately.
+                </p>
+                <p class="card-meta">
+                  Media spend is separate from creative and setup charges; both are discussed before launch.
+                </p>
+                <div class="card-cta">
+                  <a href="contact.html" class="btn-primary">Plan a campaign</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          © <span id="year"></span> Asta Epsilon Infotronics. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Devices &amp; PCBs | Asta Epsilon Infotronics</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #f4f5f7;
+      --bg-alt: #e9edf0;
+      --accent: #3b3c36;
+      --accent-soft: #7b7d77;
+      --accent-bright: #ff6f20;
+      --text-main: #222426;
+      --text-muted: #5b5d60;
+      --border-soft: #d1d5db;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+      --accent-pcb: #e0f2fe;
+      --accent-flame: #fef3c7;
+      --accent-dust: #e0f7fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Glacial Indifference', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    header {
+      background: #ffffff;
+      box-shadow: var(--shadow-soft);
+      z-index: 20;
+      position: relative;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-left img.logo {
+      height: 80px;
+      width: auto;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-menu a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-bright);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .nav-menu {
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+      }
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HERO VIDEO */
+    .devices-hero {
+      position: relative;
+      width: 100vw;
+      height: 65vh;
+      max-height: 100vh;
+      overflow: hidden;
+    }
+
+    .devices-hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      transform: translate(-50%, -50%) scale(1.03);
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .devices-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.3) 55%,
+        transparent 100%
+      );
+      z-index: 1;
+    }
+
+    .devices-hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      max-width: 34rem;
+    }
+
+    .hero-title span {
+      color: var(--accent-bright);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 38rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+      background: #f2f2f2;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      color: var(--accent);
+    }
+
+    /* SECTION HEADER */
+    section {
+      padding: 2.8rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 1.7rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 42rem;
+    }
+
+    /* DEVICE CARDS */
+    .devices-section {
+      background: #ffffff;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .device-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.6rem;
+    }
+
+    @media (max-width: 960px) {
+      .device-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .device-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .device-card {
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 1.3rem 1.3rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .device-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 60%);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .device-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .device-card.pcb {
+      background: linear-gradient(135deg, var(--accent-pcb), #ffffff);
+    }
+
+    .device-card.flame {
+      background: linear-gradient(135deg, var(--accent-flame), #ffffff);
+    }
+
+    .device-card.dust {
+      background: linear-gradient(135deg, var(--accent-dust), #ffffff);
+    }
+
+    .device-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-soft);
+      margin-bottom: 0.35rem;
+    }
+
+    .device-name {
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .device-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .device-price span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 0.12rem;
+    }
+
+    .device-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .device-meta {
+      font-size: 0.78rem;
+      color: var(--accent-soft);
+    }
+
+    .device-cta {
+      margin-top: 0.7rem;
+    }
+
+    .device-cta .btn-primary {
+      font-size: 0.78rem;
+      padding: 0.6rem 1.4rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1rem 0 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      color: var(--accent-soft);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- NAVBAR -->
+    <header>
+      <div class="container nav">
+        <div class="nav-left">
+          <a href="index.html">
+            <img src="logo.png" alt="Asta Epsilon Infotronics logo" class="logo" />
+          </a>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="about.html">About Us</a>
+          <a href="services-web.html">Web Dev</a>
+          <a href="services-software.html">Software</a>
+          <a href="services-other.html">Other Services</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="devices-hero">
+        <video autoplay loop muted playsinline>
+          <source src="devices-hero.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+        <div class="devices-hero-overlay"></div>
+        <div class="devices-hero-content container">
+          <div>
+            <div class="hero-kicker">Devices &amp; hardware</div>
+            <h1 class="hero-title">
+              Custom PCBs, sensors<br />
+              <span>and small devices</span>
+            </h1>
+            <p class="hero-sub">
+              Asta Epsilon Infotronics designs and assembles custom PCBs, as well as ready-to-use sensor modules and small devices, so projects can move from breadboard to bench-tested hardware.
+            </p>
+            <div class="hero-cta">
+              <a href="#devices" class="btn-primary">View devices</a>
+              <a href="contact.html" class="btn-outline">Talk specs with us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEVICES / CARDS -->
+      <section id="devices" class="devices-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Modules &amp; services</div>
+            <h2 class="section-title">Available hardware</h2>
+            <p class="section-sub">
+              From one-off boards to small runs of sensor modules, the team focuses on clear pinouts, stable behaviour, and documentation you can actually wire from.
+            </p>
+          </div>
+
+          <div class="device-grid">
+            <!-- PCB design & assembly -->
+            <article class="device-card pcb">
+              <div class="device-inner">
+                <div class="device-label">Service</div>
+                <h3 class="device-name">Custom PCB design &amp; assembly</h3>
+                <p class="device-text">
+                  Board-level design and assembly for your circuits, from schematics to fabricated PCBs with components placed and soldered.
+                </p>
+                <p class="device-text">
+                  Ideal for student projects, prototypes, and small tools that have outgrown jumper wires.
+                </p>
+                <p class="device-meta">
+                  Final pricing depends on layer count, component density, and quantity.
+                </p>
+                <div class="device-cta">
+                  <a href="contact.html" class="btn-primary">Start a PCB brief</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Flame sensor -->
+            <article class="device-card flame">
+              <div class="device-inner">
+                <div class="device-label">Sensor module</div>
+                <h3 class="device-name">Flame sensor module</h3>
+                <p class="device-text">
+                  Compact flame detection module suitable for basic fire-detection experiments, robots, and safety demos.
+                </p>
+                <p class="device-text">
+                  Supplied with clear pin labels so you can plug it into microcontrollers or breadboards quickly.
+                </p>
+                <p class="device-meta">
+                  Recommended for lab use, demos, and student builds; not a certified safety device.
+                </p>
+                <div class="device-cta">
+                  <a href="contact.html" class="btn-primary">Order flame sensors</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Particulate sensor -->
+            <article class="device-card dust">
+              <div class="device-inner">
+                <div class="device-label">Sensor module</div>
+                <h3 class="device-name">Particulate sensor module</h3>
+                <p class="device-text">
+                  A particulate (dust) sensor module for monitoring basic air quality metrics in rooms, labs, or small enclosures.
+                </p>
+                <p class="device-text">
+                  Designed to integrate with microcontrollers and dashboards so you can visualise readings over time.
+                </p>
+                <p class="device-meta">
+                  Useful for projects in environmental monitoring, IoT, or research prototypes.
+                </p>
+                <div class="device-cta">
+                  <a href="contact.html" class="btn-primary">Order particulate sensors</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          © <span id="year"></span> Asta Epsilon Infotronics. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="devices.html">Devices</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
